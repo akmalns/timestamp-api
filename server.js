@@ -24,6 +24,21 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+//Checking Date validity
+const isValidDate = (d)=>{
+  return !isNaN(d);
+}
+
+//Time conversion
+app.get("/api/:date?",(req,res)=>{
+  let unixDate = Date.parse(req.params.date);
+  let utcDate = new Date(req.params.date).toUTCString();
+  if(isValidDate(unix)){
+    res.json({unix:unixDate,utc:utcDate});
+  }else{
+    res.json({error:"Invalid Date"});
+  }
+})
 
 
 // listen for requests :)
