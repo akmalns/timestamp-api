@@ -31,15 +31,22 @@ const isValidDate = (d)=>{
 
 //Time conversion
 app.get("/api/:date?",(req,res)=>{
-  let inputDate = new Date(parseInt(req.params.date));
-  
+  let inputDate;
+  if(req.params.date===undefined){
+    inputDate = new Date();
+  }else{
+    inputDate = new Date(req.params.date);
+    if(!isValidDate(inputDate)){
+      inputDate = new Date(parseInt(req.params.date));
+    }
+  }
+    
   if(isValidDate(inputDate)){
     res.json({"unix":inputDate.getTime(),"utc":inputDate.toUTCString()});
   }else{
     res.json({error:"Invalid Date"});
   }
 })
-
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
