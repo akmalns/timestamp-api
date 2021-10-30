@@ -38,7 +38,7 @@ app.get("/api/:date?",(req,res)=>{
   console.log(utcDate);
   
   if(isValidDate(unix)){
-    res.json({unix:unixDate,utc:utcDate});
+    res.json({"unix":unixDate,"utc":utcDate});
   }else{
     res.json({error:"Invalid Date"});
   }
