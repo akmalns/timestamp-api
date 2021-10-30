@@ -31,7 +31,7 @@ const isValidDate = (d)=>{
 
 //Time conversion
 app.get("/api/:date?",(req,res)=>{
-  let inputDate = new Date(req.params.date);
+  let inputDate = new Date(parseInt(req.params.date));
   
   if(isValidDate(inputDate)){
     res.json({"unix":inputDate.getTime(),"utc":inputDate.toUTCString()});
