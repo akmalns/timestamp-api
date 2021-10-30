@@ -33,6 +33,10 @@ const isValidDate = (d)=>{
 app.get("/api/:date?",(req,res)=>{
   let unixDate = Date.parse(req.params.date);
   let utcDate = new Date(req.params.date).toUTCString();
+  
+  console.log(unixDate);
+  console.log(utcDate);
+  
   if(isValidDate(unix)){
     res.json({unix:unixDate,utc:utcDate});
   }else{
